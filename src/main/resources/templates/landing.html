@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Blog</title>
+
+    <!-- Bootstrap core CSS -->
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link th:href="@{/css/landing-page.css}" rel="stylesheet">
+
+</head>
+
+<body>
+
+<!-- Navigation -->
+<nav class="navbar navbar-light bg-light static-top">
+    <div class="container">
+        <a class="navbar-brand" href="#">Блог</a>
+        <a class="btn btn-primary" href="#">Вхід</a>
+    </div>
+</nav>
+
+<!-- Masthead -->
+<header class="masthead text-white text-center">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-9 mx-auto">
+                <h2 class="mb-5">Свобода нічого не варта, якщо вона не включає в себе свободу самовираження</h2>
+            </div>
+            <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
+                <a class="btn btn-primary" th:href="@{/home}">Перейти на домашню сторінку &rarr;</a>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Image Showcases -->
+<section class="showcase">
+    <div class="container-fluid p-0">
+        <div class="row no-gutters">
+
+            <div id="showcase1" class="col-lg-6 order-lg-2 text-white showcase-img"></div>
+            <div class="col-lg-6 order-lg-1 my-auto showcase-text">
+                <h2>Повністю адаптивний дизайн</h2>
+                <p class="lead mb-0">Працюйте де завгодно і на чому завгодно. Використовуйте смартфон, планшет або ПК.</p>
+            </div>
+        </div>
+        <div class="row no-gutters">
+            <div id="showcase2" class="col-lg-6 text-white showcase-img"></div>
+            <div class="col-lg-6 my-auto showcase-text">
+                <h2>Можливість завантажувати світлини</h2>
+                <p class="lead mb-0">Поділіться своїми враженнями, робіть неперевершені фото та публікуйте їх у своєму блозі.</p>
+            </div>
+        </div>
+        <div class="row no-gutters">
+            <div id="showcase3" class="col-lg-6 order-lg-2 text-white showcase-img"></div>
+            <div class="col-lg-6 order-lg-1 my-auto showcase-text">
+                <h2>Зручність та легкість у використанні.</h2>
+                <p class="lead mb-0">Виражайте думки у зручній для Вас формі, не стримуйте свій розум - живіть вільно!</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 h-100 text-center text-lg-left my-auto">
+                <ul class="list-inline mb-2">
+                    <li class="list-inline-item">
+                        <a href="#">Про нас</a>
+                    </li>
+                    <li class="list-inline-item">&sdot;</li>
+                    <li class="list-inline-item">
+                        <a href="#">Контакти</a>
+                    </li>
+                    <li class="list-inline-item">&sdot;</li>
+                    <li class="list-inline-item">
+                        <a href="#">Правила використання</a>
+                    </li>
+                    <li class="list-inline-item">&sdot;</li>
+                    <li class="list-inline-item">
+                        <a href="#">Політика приватності</a>
+                    </li>
+                </ul>
+                <p class="text-muted small mb-4 mb-lg-0">&copy; Веб додаток "Персональний блог" 2020. Всі права захищено.</p>
+            </div>
+            <div class="col-lg-6 h-100 text-center text-lg-right my-auto">
+                <ul class="list-inline mb-0">
+                    <li class="list-inline-item mr-3">
+                        <a href="#">
+                            <i class="fab fa-facebook fa-2x fa-fw"></i>
+                        </a>
+                    </li>
+                    <li class="list-inline-item mr-3">
+                        <a href="#">
+                            <i class="fab fa-twitter-square fa-2x fa-fw"></i>
+                        </a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a href="#">
+                            <i class="fab fa-instagram fa-2x fa-fw"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Bootstrap core JavaScript -->
+<script th:src="@{/js/jquery.min.js}"></script>
+<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+
+</body>
+
+</html>
