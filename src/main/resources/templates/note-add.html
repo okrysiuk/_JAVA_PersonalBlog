@@ -32,6 +32,7 @@
             <!-- Title -->
             <h2 class="mt-4">Нова стаття:</h2>
             <form action="/addition" method="post">
+                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
                 <input type="text" name="author" placeholder="Автор:" class="form-control"><br>
                 <input type="text" name="title" placeholder="Назва статті.." class="form-control"><br>
                 <textarea name="text" placeholder="Текст статті.." class="form-control"></textarea><br>

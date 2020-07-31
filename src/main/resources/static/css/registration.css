@@ -1,0 +1,19 @@
+html, body {
+    height: 100%
+}
+
+#message-error {
+    color: #C82333;
+}
+
+#message-logout {
+    color: #E0A800;
+}
+
+#message-block {
+    min-height: 40px;
+}
+
+#form {
+    text-align: center
+}
