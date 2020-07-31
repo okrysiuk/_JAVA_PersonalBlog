@@ -37,7 +37,7 @@
                 <!--    <img class="card-img-top" src="http://placehold.it/750x300" alt="Card image cap">-->
                 <div class="card-body">
                     <h2 th:text="${note.getTitle()}" class="card-title"></h2>
-    <!--                <p>Автор: <span th:text="${note.getAuthor()}" class="card-text"></span></p>-->
+                    <!--                <p>Автор: <span th:text="${note.getAuthor()}" class="card-text"></span></p>-->
                     <p>Теги: <span th:text="${note.getTag()}" class="card-text"></span></p>
                     <a th:href="'note' + '/' + ${note.getId()}" class="btn btn-primary">Читати далі &rarr;</a>
                 </div>
@@ -62,20 +62,23 @@
 
             <!-- Search Widget -->
             <div class="card my-4">
-                <h5 class="card-header">Search</h5>
-                <div class="card-body">
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search for...">
-                        <span class="input-group-append">
-                <button class="btn btn-secondary" type="button">Go!</button>
-              </span>
+                <h5 class="card-header">Пошук</h5>
+                <form method="get" action="/home">
+                    <div class="card-body">
+                        <div class="input-group">
+                                <!-- {filter!} need to avoid page crushing -->
+                                <input type="text" name="filter" class="form-control" placeholder="Знайти..."/>
+                                <span class="input-group-append">
+                                    <button class="btn btn-primary" type="button">Go!</button>
+                                </span>
+                        </div>
                     </div>
-                </div>
+                </form>
             </div>
 
             <!-- Categories Widget -->
             <div class="card my-4">
-                <h5 class="card-header">Categories</h5>
+                <h5 class="card-header">Категорії</h5>
                 <div class="card-body">
                     <div class="row">
                         <div class="col-lg-6">

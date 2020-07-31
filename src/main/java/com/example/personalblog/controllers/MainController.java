@@ -25,9 +25,15 @@ public class MainController {
     }
 
     @GetMapping("/home")
-    public String home(Model model) {
-        Iterable<Note> notes = noteRepo.findAll();
+    public String home(@RequestParam(required = false, defaultValue = "") String filter, Model model) {
+        Iterable<Note> notes;
+        if(filter != null && !filter.isEmpty()) {
+            notes = noteRepo.findByTag(filter);
+        } else {
+            notes = noteRepo.findAll();
+        }
         model.addAttribute("notes", notes);
+        model.addAttribute("filter", notes);
         return "home";
     }
 
