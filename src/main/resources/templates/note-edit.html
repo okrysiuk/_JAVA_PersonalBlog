@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3" lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Blog - Home Page</title>
+
+    <!-- Bootstrap core CSS -->
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link th:href="@{/css/blog-home.css}" rel="stylesheet">
+
+</head>
+
+<body>
+<!-- Navigation -->
+<div th:insert="common/navbar.html :: navbar"></div>
+<!-- Page Content -->
+<div class="container">
+
+    <div class="row">
+
+        <!-- Post Content Column -->
+        <div class="col-lg-8">
+
+            <!-- Title -->
+            <h2 class="mt-4">Відредагуйте статтю:</h2>
+            <div th:each="note : ${detail}">
+                <form method="post">
+                    <input type="text" th:value="${note.getAuthor()}" name="author" placeholder="Автор:" class="form-control"><br>
+                    <input type="text" th:value="${note.getTitle()}" name="title" placeholder="Назва статті.." class="form-control"><br>
+                    <textarea name="text" placeholder="Текст статті.." class="form-control" th:text="${note.getText()}"/><br>
+                    <input type="text" th:value="${note.getTag()}" name="tag" placeholder="Теги:" class="form-control"><br>
+                    <button type="submit" class="btn btn-success">Поновити</button>
+                </form>
+            </div>
+
+        </div>
+
+    </div>
+    <!-- /.row -->
+
+</div>
+<!-- /.container -->
+
+<!-- Footer -->
+<div th:insert="common/footer.html :: footer"></div>
+
+<!-- Bootstrap core JavaScript -->
+<script th:src="@{/js/jquery.min.js}"></script>
+<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+
+</body>
+
+</html>

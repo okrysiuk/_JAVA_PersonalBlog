@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3" lang="en">
 
 <head>
 
@@ -125,12 +125,7 @@
 <!-- /.container -->
 
 <!-- Footer -->
-<footer class="py-5 bg-light">
-    <div class="container">
-        <p class="m-0 text-center text-dark">Copyright &copy; Your Website 2020</p>
-    </div>
-    <!-- /.container -->
-</footer>
+<div th:insert="common/footer.html :: footer"></div>
 
 <!-- Bootstrap core JavaScript -->
 <script th:src="@{/js/jquery.min.js}"></script>
