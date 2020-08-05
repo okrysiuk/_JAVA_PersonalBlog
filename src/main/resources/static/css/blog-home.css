@@ -1,3 +1,12 @@
 body {
   padding-top: 56px;
 }
+
+.logo
+{
+  display: inline-block;
+  width: 77px;
+  height: 60px;
+  background-image: url("../imgs/logo.jpg");
+  background-repeat: no-repeat;
+}

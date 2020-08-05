@@ -35,8 +35,9 @@ public class MainController {
     }
 
     @GetMapping("/home")
-    public String home(@RequestParam(required = false, defaultValue = "") String filter, Model model) {
+    public String home(@RequestParam(required = false, defaultValue = "") String filter, @AuthenticationPrincipal User user, Model model) {
         Iterable<Note> notes;
+
         if(filter != null && !filter.isEmpty()) {
             notes = noteRepo.findByTag(filter);
         } else {
@@ -44,6 +45,7 @@ public class MainController {
         }
         model.addAttribute("notes", notes);
         model.addAttribute("filter", notes);
+        model.addAttribute("user", user);
         return "home";
     }
 
