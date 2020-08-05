@@ -1,9 +1,6 @@
 package com.example.personalblog.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Note {
@@ -11,20 +8,28 @@ public class Note {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String author;
+//    private String author;
     private String title;
     private String text;
     private String tag;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "user_id")
+    private User author;
+
 
     public Note(){
 
     }
 
-    public Note(String author, String title, String text, String tag) {
-        this.author = author;
+    public Note(User user, String title, String text, String tag) {
+        this.author = user;
         this.title = title;
         this.text = text;
         this.tag = tag;
+    }
+    public String getAuthorName() {
+        return author != null ? author.getUsername() : "no author";
     }
 
     public Long getId() {
@@ -33,14 +38,6 @@ public class Note {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(String author) {
-        this.author = author;
     }
 
     public String getTitle() {
@@ -65,5 +62,13 @@ public class Note {
 
     public void setTag(String tag) {
         this.tag = tag;
+    }
+
+    public User getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(User author) {
+        this.author = author;
     }
 }

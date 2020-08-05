@@ -1,8 +1,10 @@
 package com.example.personalblog.controllers;
 
 import com.example.personalblog.entities.Note;
+import com.example.personalblog.entities.User;
 import com.example.personalblog.repositories.NoteRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -44,11 +46,12 @@ public class MainController {
     }
 
     @PostMapping("/addition")
-    public String noteAddition(@RequestParam(required = false) String author,
+    public String noteAddition(@AuthenticationPrincipal User user,
+//                            @RequestParam(required = false) String author,
                            @RequestParam(required = false) String title,
                            @RequestParam(required = false) String text,
                            @RequestParam(required = false) String tag, Model model){
-        Note note = new Note(author, title, text, tag);
+        Note note = new Note(user, title, text, tag);
         noteRepo.save(note);
         return "redirect:/home";
     }
@@ -81,14 +84,14 @@ public class MainController {
 
     @PostMapping("/note/{id}/edit")
     public String noteUpdating(@PathVariable(value = "id")long noteId,
-                               @RequestParam(required = false) String author,
+//                               @RequestParam(required = false) String author,
                                @RequestParam(required = false) String title,
                                @RequestParam(required = false) String text,
                                @RequestParam(required = false) String tag, Model model) {
         Note note = noteRepo.findById(noteId).orElseThrow(() ->
                 new IllegalArgumentException("Unsupported value: " + noteId) // just return it
         );
-        note.setAuthor(author);
+//        note.setAuthor(author);
         note.setTitle(title);
         note.setText(text);
         note.setTag(tag);
