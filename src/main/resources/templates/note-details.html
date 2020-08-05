@@ -38,10 +38,10 @@
             <hr>
 
             <!-- Preview Image -->
-            <!--            <img class="img-fluid rounded" src="http://placehold.it/900x300" alt="">-->
+            <img class="card-img-top" th:src="@{'/img/' + ${note.filename}}" alt="Card image cap">
 
             <!-- Post Content -->
-            <p th:text="${note.getText()}"></p>
+            <p th:text="${note.text}"></p>
 
             <hr>
             <a th:href="'/' + 'note' + '/' + ${note.id} + '/' + 'edit'" class="btn btn-warning">Редагувати</a><br><br>
