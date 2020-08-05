@@ -13,12 +13,7 @@
 </head>
 <body>
     <!-- Navigation -->
-    <nav class="navbar navbar-light bg-light static-top">
-        <div class="container">
-            <a class="navbar-brand" href="/">Блог</a>
-            <a class="btn btn-primary" href="/login">Вхід</a>
-        </div>
-    </nav>
+    <div th:insert="common/navbar-lite.html :: navbar-lite"></div>
     <!-- Login Form -->
     <div class="container-fluid h-100">
         <div id="form" class="row justify-content-center align-items-center h-100">

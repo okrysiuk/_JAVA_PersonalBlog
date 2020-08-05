@@ -36,13 +36,13 @@
             <div th:each="note : ${notes}" class="card mb-4">
                 <!--    <img class="card-img-top" src="http://placehold.it/750x300" alt="Card image cap">-->
                 <div class="card-body">
-                    <h2 th:text="${note.getTitle()}" class="card-title"></h2>
+                    <h2 th:text="${note.title}" class="card-title"></h2>
                     <!--                <p>Автор: <span th:text="${note.getAuthor()}" class="card-text"></span></p>-->
-                    <p>Теги: <span th:text="${note.getTag()}" class="card-text"></span></p>
-                    <a th:href="'note' + '/' + ${note.getId()}" class="btn btn-primary">Читати далі &rarr;</a>
+                    <p>Теги: <span th:text="${note.tag}" class="card-text"></span></p>
+                    <a th:href="'note' + '/' + ${note.id}" class="btn btn-primary">Читати далі &rarr;</a>
                 </div>
                 <div class="card-footer text-muted">
-                    <p>Автор: <span th:text="${note.getAuthor()}" class="card-text"></span></p>
+                    <p>Автор: <span th:text="${note.getAuthorName()}" class="card-text"></span></p>
                 </div>
             </div>
 
