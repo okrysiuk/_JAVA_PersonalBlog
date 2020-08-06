@@ -22,9 +22,10 @@ public class RegistrationController {
     public String addUser(User user, Model model){
 
         if(!userService.addUser(user)){
-            model.addAttribute("user_from_db", "User already exists..");
+            model.addAttribute("userExists", "Такий користувач вже існує");
             return "registration";
         }
+        model.addAttribute("serviceMessage", "На Вашу пошту було надіслано посилання, перейдіть за вказаною адресою для активації облікового запису");
 
         return "redirect:/login";
     }
@@ -34,9 +35,9 @@ public class RegistrationController {
         boolean isActivated = userService.activateUser(code);
 
         if(isActivated) {
-            model.addAttribute("message", "User successfully activated!");
+            model.addAttribute("activationSuccessful", "Активація пройшла успішно");
         } else {
-            model.addAttribute("message", "Activation code is not found!");
+            model.addAttribute("activationFailed", "Код активації недійсний");
         }
         return "login";
     }

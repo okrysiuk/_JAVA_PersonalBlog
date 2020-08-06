@@ -19,7 +19,7 @@
         <div id="form" class="row justify-content-center align-items-center h-100">
             <div class="col col-sm-6 col-md-6 col-lg-4 col-xl-3">
 <!--                <img class="mb-4" src="/img/user-icon.png" alt="" width="72" height="72">-->
-                <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+                <h1 class="h3 mb-3 font-weight-normal">Увійти в систему</h1>
                 <div>
                 <form th:action="@{/login}" method="post">
                     <div class="form-group">
@@ -29,18 +29,20 @@
                         <input class="form-control form-control-lg" placeholder="Пароль" type="password" name="password"/>
                     </div>
                     <div class="form-group">
-                        <button class="btn btn-primary btn-lg btn-block" type="submit">Sign In</button>
+                        <button class="btn btn-primary btn-lg btn-block" type="submit">Вхід</button>
                     </div>
                     <div class="bottom-action clearfix">
-                        <label class="float-left form-check-label"><input type="checkbox"> Remember me</label>
-                        <a href="/registration" class="float-right">Create new Account</a>
+                        <label class="float-left form-check-label"><input type="checkbox"> Запам'ятати мене</label>
+                        <a href="/registration" class="float-right">Створити користувача</a>
                     </div>
                 </form>
                 </div>
-                <p class="mt-5 mb-3 text-muted">© All rights not reserved 2019-2020</p>
+                <p class="mt-5 mb-3 text-muted">©2019-2020рр</p>
                 <div id="message-block">
-                    <div id="message-error" th:if="${param.error}">Invalid username or password.</div>
-                    <div id="message-logout" th:if="${param.logout}">You have been logged out.</div>
+                    <div class="alert alert-danger" th:if="${param.error}">Невірне ім'я користувача або пароль</div>
+                    <div class="alert alert-info" th:if="${param.logout}">Ви вийшли з системи</div>
+                    <div class="alert alert-success" th:if="${activationSuccessful}" th:text="${activationSuccessful}"></div>
+                    <div class="alert alert-danger" th:if="${activationFailed}" th:text="${activationFailed}"></div>
                 </div>
             </div>
         </div>
@@ -48,7 +50,7 @@
 </body>
 
 <!-- Custom JavaScript -->
-<script th:src="@{/js/login-registration.js}"></script>
+<!--<script th:src="@{/js/login-registration.js}"></script>-->
 
 </html>
 
