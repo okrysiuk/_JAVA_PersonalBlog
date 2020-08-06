@@ -19,23 +19,24 @@
     <div id="form" class="row justify-content-center align-items-center h-100">
         <div class="col col-sm-6 col-md-6 col-lg-4 col-xl-3">
             <!--                <img class="mb-4" src="/img/user-icon.png" alt="" width="72" height="72">-->
-            <h1 class="h3 mb-3 font-weight-normal">Реєстрація користувача</h1>
+            <h2 class="h3 mb-3 font-weight-normal text-dark">Реєстрація</h2>
+            <p class="text-info">На Вашу пошту буде надіслано лист. Перейдіть за посиланням у листі, щоб активувати користувача.</p>
             <form th:action="@{/registration}" method="post">
                 <div class="form-group">
-                    <input class="form-control form-control-lg" placeholder="Ім'я користувача.." type="text" name="username"/>
+                    <input class="form-control form-control-lg" placeholder="Ім'я.." type="text" name="username"/>
                 </div>
                 <div class="form-group">
-                    <input class="form-control form-control-lg" placeholder="Електронна пошта.." type="email" name="email"/>
+                    <input class="form-control form-control-lg" placeholder="Адреса електронної пошти.." type="email" name="email"/>
                 </div>
                 <div class="form-group">
-                    <input class="form-control form-control-lg" placeholder="Пароль на вхід.." type="password" name="password"/>
+                    <input class="form-control form-control-lg" placeholder="Пароль.." type="password" name="password"/>
                 </div>
                 <div class="form-group">
-                    <button class="btn btn-success btn-lg btn-block" type="submit">Створити</button>
+                    <button class="btn btn-success btn-lg btn-block" type="submit">Зареєструватися</button>
 
                 </div>
             </form>
-            <p class="mt-5 mb-3 text-muted">© 2019-2020рр</p>
+            <p class="mt-5 mb-3 text-muted">©2020</p>
             <div id="message-block">
                 <div class="alert alert-danger" th:if="${userExists}" th:text="${userExists}"></div>
             </div>

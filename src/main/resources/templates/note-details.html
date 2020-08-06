@@ -40,10 +40,13 @@
             <!-- Preview Image -->
             <img class="card-img-top" th:src="@{'/img/' + ${note.filename}}" alt="Card image cap">
 
+            <hr>
+
             <!-- Post Content -->
             <p th:text="${note.text}"></p>
 
             <hr>
+
             <a th:href="'/' + 'note' + '/' + ${note.id} + '/' + 'edit'" class="btn btn-warning">Редагувати</a><br><br>
 
             <form th:action="'/' + 'note' + '/' + ${note.id} + '/' + 'remove'" method="post">

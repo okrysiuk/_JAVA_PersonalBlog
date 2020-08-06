@@ -25,7 +25,6 @@ public class RegistrationController {
             model.addAttribute("userExists", "Такий користувач вже існує");
             return "registration";
         }
-        model.addAttribute("serviceMessage", "На Вашу пошту було надіслано посилання, перейдіть за вказаною адресою для активації облікового запису");
 
         return "redirect:/login";
     }

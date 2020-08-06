@@ -36,7 +36,7 @@
                     <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
 <!--                    <input type="text" th:value="${note.getAuthor()}" name="author" placeholder="Автор:" class="form-control"><br>-->
                     <input type="text" th:value="${note.title}" name="title" placeholder="Назва статті.." class="form-control"><br>
-                    <textarea name="text" placeholder="Текст статті.." class="form-control" th:text="${note.text}"/><br>
+                    <textarea style="min-height: 200px" name="text" placeholder="Текст статті.." class="form-control" spellcheck="false" th:text="${note.text}"></textarea><br>
                     <input type="text" th:value="${note.tag}" name="tag" placeholder="Теги:" class="form-control"><br>
                     <button type="submit" class="btn btn-success">Поновити</button>
                 </form>
