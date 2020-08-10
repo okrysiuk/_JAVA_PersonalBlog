@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class RegistrationController {
+
     @Autowired
     private UserService userService;
+
     @GetMapping("/registration")
     public String registration(){
         return "registration";
@@ -22,7 +24,7 @@ public class RegistrationController {
     public String addUser(User user, Model model){
 
         if(!userService.addUser(user)){
-            model.addAttribute("userExists", "Такий користувач вже існує");
+            model.addAttribute("userExists", "User already exists");
             return "registration";
         }
 
@@ -34,9 +36,9 @@ public class RegistrationController {
         boolean isActivated = userService.activateUser(code);
 
         if(isActivated) {
-            model.addAttribute("activationSuccessful", "Активація пройшла успішно");
+            model.addAttribute("activationSuccessful", "Activation successful");
         } else {
-            model.addAttribute("activationFailed", "Код активації недійсний");
+            model.addAttribute("activationFailed", "Activation code does nor exists");
         }
         return "login";
     }

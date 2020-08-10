@@ -2,7 +2,7 @@
 <!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
     <div class="container">
-        <a class="navbar-brand" th:href="@{/}">Блог</a>
+        <a class="navbar-brand" th:href="@{/}">Blog Web Application</a>
 <!--        <div class="navbar-text" th:if="${user.getUsername() != null}">-->
 <!--            <span class="my-0 mr-lg-auto font-weight-normal text-success" th:text="@{'Привіт, ' + ${user.getUsername()} + ' !'}"></span>-->
 <!--        </div>-->
@@ -12,7 +12,7 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item active">
-                    <a class="nav-link text-dark" th:href="@{/home}">Домашня сторінка
+                    <a class="nav-link text-dark" th:href="@{/home}">Home page
                         <span class="sr-only">(current)</span>
                     </a>
                 </li>
@@ -20,11 +20,11 @@
 <!--                    <a class="nav-link text-dark" th:href="@{/user-list}">Користувачі</a>-->
 <!--                </li>-->
                 <li class="nav-item" style="margin-right: 10px">
-                    <a class="nav-link text-dark" th:href="@{/note-add}">Додати запис</a>
+                    <a class="nav-link text-dark" th:href="@{/note-add}"> + Add note</a>
                 </li>
                 <li class="nav-item">
                     <form th:action="@{/logout}" method="post">
-                        <button type="submit" class="btn btn-danger">Вийти</button>
+                        <button type="submit" class="btn btn-danger">Log out</button>
                     </form>
                 </li>
             </ul>

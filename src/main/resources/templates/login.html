@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
       xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
-    <title>Blog Login Page</title>
+    <title>Blog WebApp - Login Page</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
     <!-- Bootstrap core CSS -->
@@ -19,28 +19,29 @@
         <div id="form" class="row justify-content-center align-items-center h-100">
             <div class="col col-sm-6 col-md-6 col-lg-4 col-xl-3">
 <!--                <img class="mb-4" src="/img/user-icon.png" alt="" width="72" height="72">-->
-                <h2 class="h3 mb-3 font-weight-normal text-dark">Увійти в систему</h2>
+                <h2 class="h3 mb-3 font-weight-normal text-dark">Log into Blog</h2>
                 <div>
                 <form th:action="@{/login}" method="post">
                     <div class="form-group">
-                        <input class="form-control form-control-lg" placeholder="Ім'я користувача" type="text" name="username"/>
+                        <input class="form-control form-control-lg" placeholder="Username..." type="text" name="username"/>
                     </div>
                     <div class="form-group">
-                        <input class="form-control form-control-lg" placeholder="Пароль" type="password" name="password"/>
+                        <input class="form-control form-control-lg" placeholder="Password..." type="password" name="password"/>
                     </div>
                     <div class="form-group">
-                        <button class="btn btn-primary btn-lg btn-block" type="submit">Вхід</button>
+                        <button class="btn btn-primary btn-lg btn-block" type="submit">Enter</button>
                     </div>
                     <div class="bottom-action clearfix">
-                        <label class="float-left form-check-label"><input type="checkbox"> Запам'ятати мене</label>
-                        <a href="/registration" class="float-right">Реєстрація</a>
+                        <label class="float-left form-check-label"><input type="checkbox"> Remember me</label>
+                        <a href="/registration" class="float-right">Register now</a>
                     </div>
+                    <input type="hidden" name="_csrf" value="${_csrf.token}" />
                 </form>
                 </div>
                 <p class="mt-5 mb-3 text-muted">©2020</p>
                 <div id="message-block">
-                    <div class="alert alert-danger" th:if="${param.error}">Невірне ім'я користувача або пароль</div>
-                    <div class="alert alert-info" th:if="${param.logout}">Ви вийшли з системи</div>
+                    <div class="alert alert-danger" th:if="${param.error}">Wrong username or password</div>
+                    <div class="alert alert-info" th:if="${param.logout}">You just logged out</div>
                     <div class="alert alert-success" th:if="${activationSuccessful}" th:text="${activationSuccessful}"></div>
                     <div class="alert alert-danger" th:if="${activationFailed}" th:text="${activationFailed}"></div>
                 </div>

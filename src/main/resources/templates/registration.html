@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
       xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
-    <title>User registration form</title>
+    <title>Blog WebApp - Registration</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
     <!-- Bootstrap core CSS -->
@@ -19,22 +19,22 @@
     <div id="form" class="row justify-content-center align-items-center h-100">
         <div class="col col-sm-6 col-md-6 col-lg-4 col-xl-3">
             <!--                <img class="mb-4" src="/img/user-icon.png" alt="" width="72" height="72">-->
-            <h2 class="h3 mb-3 font-weight-normal text-dark">Реєстрація</h2>
-            <p class="text-info">На Вашу пошту буде надіслано лист. Перейдіть за посиланням у листі, щоб активувати користувача.</p>
+            <h2 class="h3 mb-3 font-weight-normal text-dark">Registration</h2>
+            <p class="text-info">You will receive email from us. Follow link in a letter, to activate your account.</p>
             <form th:action="@{/registration}" method="post">
                 <div class="form-group">
-                    <input class="form-control form-control-lg" placeholder="Ім'я.." type="text" name="username"/>
+                    <input class="form-control form-control-lg" placeholder="Username..." type="text" name="username"/>
                 </div>
                 <div class="form-group">
-                    <input class="form-control form-control-lg" placeholder="Адреса електронної пошти.." type="email" name="email"/>
+                    <input class="form-control form-control-lg" placeholder="Email..." type="email" name="email"/>
                 </div>
                 <div class="form-group">
-                    <input class="form-control form-control-lg" placeholder="Пароль.." type="password" name="password"/>
+                    <input class="form-control form-control-lg" placeholder="Password..." type="password" name="password"/>
                 </div>
                 <div class="form-group">
-                    <button class="btn btn-success btn-lg btn-block" type="submit">Зареєструватися</button>
-
+                    <button class="btn btn-success btn-lg btn-block" type="submit">Register now</button>
                 </div>
+                <input type="hidden" name="_csrf" value="${_csrf.token}" />
             </form>
             <p class="mt-5 mb-3 text-muted">©2020</p>
             <div id="message-block">
