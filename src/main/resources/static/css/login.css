@@ -2,16 +2,23 @@ html, body {
     height: 100%;
 }
 
-#message-error {
-    color: #C82333;
-}
+/*#message-red {*/
+/*    background-color: #d9534f;*/
+/*    color: #FFF;*/
+/*}*/
 
-#message-logout {
-    color: #E0A800;
-}
+/*#message-yellow {*/
+/*    background-color: #f0ad4e;*/
+/*    color: #FFF;*/
+/*}*/
+
+/*#message-green {*/
+/*    background-color: #5cb85c;*/
+/*    color: #FFF;*/
+/*}*/
 
 #message-block {
-    min-height: 40px;
+    min-height: 60px;
 }
 
 #form {

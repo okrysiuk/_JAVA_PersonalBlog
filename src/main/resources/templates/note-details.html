@@ -38,18 +38,25 @@
             <hr>
 
             <!-- Preview Image -->
-            <img class="card-img-top" th:src="@{'/img/' + ${note.filename}}" alt="Card image cap">
+            <div th:if="${note.filename}">
+                <img class="card-img-top" th:src="@{'/img/' + ${note.filename}}" alt="Card image cap">
+            </div>
+
+            <hr>
 
             <!-- Post Content -->
             <p th:text="${note.text}"></p>
 
             <hr>
-            <a th:href="'/' + 'note' + '/' + ${note.id} + '/' + 'edit'" class="btn btn-warning">Редагувати</a><br><br>
+                <div class="control" th:if="${note.getAuthorName() == user.getUsername()}">
+                    <a th:href="'/' + 'note' + '/' + ${note.id} + '/' + 'edit'" class="btn btn-warning">Edit</a><br><br>
 
-            <form th:action="'/' + 'note' + '/' + ${note.id} + '/' + 'remove'" method="post">
-                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
-                <button class="btn btn-danger" type="submit">Видалити</button>
-            </form>
+                    <form th:action="'/' + 'note' + '/' + ${note.id} + '/' + 'remove'" method="post">
+                        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+                        <button class="btn btn-danger" type="submit">Delete</button>
+                    </form>
+                </div>
+
             <!-- Comments Form -->
             <div class="card my-4">
                 <h5 class="card-header">Leave a Comment:</h5>

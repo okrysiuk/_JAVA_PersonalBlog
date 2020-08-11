@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
       xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
-    <title>User registration form</title>
+    <title>Blog WebApp - Registration</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
     <!-- Bootstrap core CSS -->
@@ -12,37 +12,41 @@
 
 </head>
 <body>
-    <!-- Navigation -->
-    <div th:insert="common/navbar-lite.html :: navbar-lite"></div>
-    <!-- Registration Form -->
-    <div class="container-fluid h-100">
-        <div id="form" class="row justify-content-center align-items-center h-100">
-            <div class="col col-sm-6 col-md-6 col-lg-4 col-xl-3">
-<!--                <img class="mb-4" src="/img/user-icon.png" alt="" width="72" height="72">-->
-                <h1 class="h3 mb-3 font-weight-normal">Register new user</h1>
-                <form th:action="@{/registration}" method="post">
-                    <div class="form-group">
-                        <input class="form-control form-control-lg" placeholder="Type your name.." type="text" name="username"/>
-                    </div>
-                    <div class="form-group">
-                        <input class="form-control form-control-lg" placeholder="Type your password.." type="password" name="password"/>
-                    </div>
-                    <div class="form-group">
-                        <button class="btn btn-success btn-lg btn-block" type="submit">Register</button>
-
-                    </div>
-                </form>
-                <p class="mt-5 mb-3 text-muted">© 2019-2020</p>
-                <div id="message-block">
-                    <div id="message-error" th:text="${user_from_db}"></div>
+<!-- Navigation -->
+<div th:insert="common/navbar-lite.html :: navbar-lite"></div>
+<!-- Registration Form -->
+<div class="container-fluid h-100">
+    <div id="form" class="row justify-content-center align-items-center h-100">
+        <div class="col col-sm-6 col-md-6 col-lg-4 col-xl-3">
+            <!--                <img class="mb-4" src="/img/user-icon.png" alt="" width="72" height="72">-->
+            <h2 class="h3 mb-3 font-weight-normal text-dark">Registration</h2>
+            <p class="text-info">You will receive email from us. Follow link in a letter, to activate your account.</p>
+            <form th:action="@{/registration}" method="post">
+                <div class="form-group">
+                    <input class="form-control form-control-lg" placeholder="Username..." type="text" name="username"/>
                 </div>
+                <div class="form-group">
+                    <input class="form-control form-control-lg" placeholder="Email..." type="email" name="email"/>
+                </div>
+                <div class="form-group">
+                    <input class="form-control form-control-lg" placeholder="Password..." type="password" name="password"/>
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-success btn-lg btn-block" type="submit">Register now</button>
+                </div>
+                <input type="hidden" name="_csrf" value="${_csrf.token}" />
+            </form>
+            <p class="mt-5 mb-3 text-muted">©2020</p>
+            <div id="message-block">
+                <div class="alert alert-danger" th:if="${userExists}" th:text="${userExists}"></div>
             </div>
         </div>
     </div>
+</div>
 </body>
 
 <!-- Custom JavaScript -->
-<script th:src="@{/js/login-registration.js}"></script>
+<!--<script th:src="@{/js/login-registration.js}"></script>-->
 
 </html>
 

@@ -1,0 +1,10 @@
+body {
+    padding-top: 56px;
+}
+
+.edit {
+    display: inline-block;
+}
+.delete {
+    display: inline-block;
+}

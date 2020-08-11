@@ -81,14 +81,14 @@ public class MainController {
     }
 
     @GetMapping("/note/{id}")
-    public String noteDetails(@PathVariable(value = "id")long noteId, Model model) {
+    public String noteDetails(@PathVariable(value = "id")long noteId, @AuthenticationPrincipal User user, Model model) {
         if(!noteRepo.existsById(noteId)){
             return "redirect:/";
         }
-
         Optional<Note> note = noteRepo.findById(noteId);
         ArrayList<Note> res = new ArrayList<>();
         note.ifPresent(res::add);
+        model.addAttribute("user", user);
         model.addAttribute("detail",res);
         return "note-details";
     }

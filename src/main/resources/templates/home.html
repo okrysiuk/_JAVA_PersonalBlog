@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Blog - Home Page</title>
+    <title>Blog Web App - Home Page</title>
 
     <!-- Bootstrap core CSS -->
     <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
@@ -29,20 +29,22 @@
         <!-- Blog Entries Column -->
         <div class="col-md-8">
 
-            <h1 class="my-4">Список публікацій</h1>
+            <h1 class="my-4">Notes list</h1>
 
             <!-- Blog Post -->
 
             <div th:each="note : ${notes}" class="card mb-4">
+                <div th:if="${note.filename}">
                     <img class="card-img-top" th:src="@{'/img/' + ${note.filename}}" alt="Card image cap">
+                </div>
                 <div class="card-body">
                     <h2 th:text="${note.title}" class="card-title"></h2>
                     <!--                <p>Автор: <span th:text="${note.getAuthor()}" class="card-text"></span></p>-->
-                    <p>Теги: <span th:text="${note.tag}" class="card-text"></span></p>
-                    <a th:href="'note' + '/' + ${note.id}" class="btn btn-primary">Читати далі &rarr;</a>
+                    <p>Tags: <span th:text="${note.tag}" class="card-text"></span></p>
+                    <a th:href="'note' + '/' + ${note.id}" class="btn btn-primary">Read more &rarr;</a>
                 </div>
                 <div class="card-footer text-muted">
-                    <p>Автор: <span th:text="${note.getAuthorName()}" class="card-text"></span></p>
+                    <p>Author: <span th:text="${note.getAuthorName()}" class="card-text"></span></p>
                 </div>
             </div>
 
@@ -62,12 +64,12 @@
 
             <!-- Search Widget -->
             <div class="card my-4">
-                <h5 class="card-header">Пошук</h5>
+                <h5 class="card-header">Search by tag</h5>
                 <form method="get" action="/home">
                     <div class="card-body">
                         <div class="input-group">
                                 <!-- {filter!} need to avoid page crushing -->
-                                <input type="text" name="filter" class="form-control" placeholder="Знайти..."/>
+                                <input type="text" name="filter" class="form-control" placeholder="Search..."/>
                                 <span class="input-group-append">
                                     <button class="btn btn-primary" type="button">Go!</button>
                                 </span>
@@ -86,9 +88,9 @@
                                 <li>
                                     <a th:if="${user.isAdmin()}" th:href="@{/user-list}">Access manager</a>
                                 </li>
-<!--                                <li>-->
-<!--                                    <a href="#">HTML</a>-->
-<!--                                </li>-->
+                                <li>
+                                    <a  th:href="@{/profile}">User profile</a>
+                                </li>
 <!--                                <li>-->
 <!--                                    <a href="#">Freebies</a>-->
 <!--                                </li>-->
