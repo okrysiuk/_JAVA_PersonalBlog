@@ -34,7 +34,9 @@
             <!-- Blog Post -->
 
             <div th:each="note : ${notes}" class="card mb-4">
+                <div th:if="${note.filename}">
                     <img class="card-img-top" th:src="@{'/img/' + ${note.filename}}" alt="Card image cap">
+                </div>
                 <div class="card-body">
                     <h2 th:text="${note.title}" class="card-title"></h2>
                     <!--                <p>Автор: <span th:text="${note.getAuthor()}" class="card-text"></span></p>-->

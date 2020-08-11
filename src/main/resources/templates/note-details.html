@@ -38,7 +38,9 @@
             <hr>
 
             <!-- Preview Image -->
-            <img class="card-img-top" th:src="@{'/img/' + ${note.filename}}" alt="Card image cap">
+            <div th:if="${note.filename}">
+                <img class="card-img-top" th:src="@{'/img/' + ${note.filename}}" alt="Card image cap">
+            </div>
 
             <hr>
 

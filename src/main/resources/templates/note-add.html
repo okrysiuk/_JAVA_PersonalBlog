@@ -35,10 +35,10 @@
                 <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
 <!--                <input type="text" name="author" placeholder="Автор:" class="form-control"><br>-->
                 <input type="text" name="title" placeholder="Note name..." class="form-control"><br>
-                <textarea style="min-height: 200px" name="text" placeholder="Main text..." class="form-control" spellcheck="false"></textarea><br>
+                <textarea style="min-height: 200px" name="text" placeholder="Main text..." class="form-control" spellcheck="false" required></textarea><br>
                 <input type="text" name="tag" placeholder="Tags:" class="form-control"><br>
                 <div class="custom-file">
-                    <input type="file" name="file" сlass="custom-file-input" required/>
+                    <input type="file" name="file" сlass="custom-file-input"/>
                 </div>
                 <hr>
                 <button type="submit" class="btn btn-success">Share</button>
