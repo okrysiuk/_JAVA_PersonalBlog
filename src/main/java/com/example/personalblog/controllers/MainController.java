@@ -18,6 +18,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Optional;
+import java.util.Set;
 import java.util.UUID;
 
 @Controller
@@ -57,11 +58,10 @@ public class MainController {
 
     @PostMapping("/addition")
     public String noteAddition(@AuthenticationPrincipal User user,
-//                            @RequestParam(required = false) String author,
                                @RequestParam("file") MultipartFile file,
-                           @RequestParam(required = false) String title,
-                           @RequestParam(required = false) String text,
-                           @RequestParam(required = false) String tag, Model model) throws IOException {
+                               @RequestParam(required = false) String title,
+                               @RequestParam(required = false) String text,
+                               @RequestParam(required = false) String tag, Model model) throws IOException {
         Note note = new Note(user, title, text, tag);
 
         if (file != null && !file.getOriginalFilename().isEmpty()) {
@@ -82,6 +82,15 @@ public class MainController {
 
     @GetMapping("/note/{id}")
     public String noteDetails(@PathVariable(value = "id")long noteId, @AuthenticationPrincipal User user, Model model) {
+        return getString(noteId, user, model);
+    }
+
+    @GetMapping("/user-notes/note/{id}")
+    public String userNoteDetails(@PathVariable(value = "id")long noteId, @AuthenticationPrincipal User user, Model model) {
+        return getString(noteId, user, model);
+    }
+
+    private String getString(@PathVariable("id") long noteId, @AuthenticationPrincipal User user, Model model) {
         if(!noteRepo.existsById(noteId)){
             return "redirect:/";
         }
@@ -108,14 +117,12 @@ public class MainController {
 
     @PostMapping("/note/{id}/edit")
     public String noteUpdating(@PathVariable(value = "id")long noteId,
-//                               @RequestParam(required = false) String author,
                                @RequestParam(required = false) String title,
                                @RequestParam(required = false) String text,
                                @RequestParam(required = false) String tag, Model model) {
         Note note = noteRepo.findById(noteId).orElseThrow(() ->
                 new IllegalArgumentException("Unsupported value: " + noteId) // just return it
         );
-//        note.setAuthor(author);
         note.setTitle(title);
         note.setText(text);
         note.setTag(tag);
@@ -133,5 +140,18 @@ public class MainController {
         noteRepo.delete(note);
 
         return "redirect:/home";
+    }
+
+    @GetMapping("/user-notes/{user}")
+    public String userNotes(
+            @AuthenticationPrincipal User currentUser,
+            @PathVariable User user,
+            Model model
+    ) {
+        Set<Note> notes = user.getNotes();
+        model.addAttribute("notes", notes);
+        model.addAttribute("isCurrentUser", currentUser.equals(user));
+
+        return "user-notes";
     }
 }
