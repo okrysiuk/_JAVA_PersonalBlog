@@ -29,7 +29,7 @@
         <!-- Blog Entries Column -->
         <div class="col-md-8">
 
-            <h1 class="my-4">Notes list</h1>
+            <h2 class="my-4">Notes list</h2>
 
             <!-- Blog Post -->
 <!--            <div class="d-flex flex-column-reverse">-->
@@ -38,7 +38,7 @@
                         <img class="card-img-top" th:src="@{'/img/' + ${note.filename}}" alt="Card image cap">
                     </div>
                     <div class="card-body">
-                        <h2 th:text="${note.title}" class="card-title"></h2>
+                        <h3 th:text="${note.title}" class="card-title"></h3>
                         <!--                <p>Автор: <span th:text="${note.getAuthor()}" class="card-text"></span></p>-->
                         <p>Tags: <span th:text="${note.tag}" class="card-text"></span></p>
                         <a th:href="'note' + '/' + ${note.id}" class="btn btn-primary">Read more &rarr;</a>
@@ -51,10 +51,18 @@
 
             <!-- Pagination -->
             <ul class="pagination justify-content-center mb-4">
-                <li class="page-item disabled"><a class="page-link" href="#">Pages</a></li>
-                <li th:each="i : ${#numbers.sequence(0, notes.getTotalPages() - 1)}" class="page-item">
-                    <a class="page-link" th:href="${url} + '?page=' + ${i.intValue()}" th:text="${i.intValue() + 1}"></a>
+                <!--                <li class="page-item disabled"><a class="page-link" href="#">Pages</a></li>-->
+                <li th:if="${notes.hasPrevious()}" class="page-item"><a class="page-link" th:href="${url} + '?page=0'">First</a></li>
+                <li th:if="${notes.hasPrevious()}" class="page-item">
+                    <a class="page-link" th:href="${url} + '?page=' + ${notes.getNumber() - 1}">< Previous</a>
                 </li>
+                <li th:if="${notes.hasNext()}" class="page-item">
+                    <a class="page-link" th:href="${url} + '?page=' + ${notes.getNumber() + 1}">Next ></a>
+                </li>
+                <!--                <li th:each="i : ${#numbers.sequence(0, notes.getTotalPages() - 1)}" class="page-item">-->
+                <!--                    <a class="page-link" th:href="'/user-notes/' + ${url} + '?page=' + ${i.intValue()}" th:text="${i.intValue() + 1}"></a>-->
+                <!--                </li>-->
+                <li th:if="${notes.hasNext()}" class="page-item"><a class="page-link" th:href="${url} + '?page=' + ${notes.getTotalPages() - 1}">Last</a></li>
             </ul>
         </div>
 

@@ -29,16 +29,15 @@
         <!-- Blog Entries Column -->
         <div class="col-md-8">
 
-            <h1 class="my-4">Notes list</h1>
+            <h2 class="my-4">[[${user.username}]]'s notes</h2>
 
             <!-- Blog Post -->
-<!--            <div class="d-flex flex-column-reverse">-->
                 <div th:each="note : ${notes}" class="card mb-4">
                     <div th:if="${note.filename}">
                         <img class="card-img-top" th:src="@{'/img/' + ${note.filename}}" alt="Card image cap">
                     </div>
                     <div class="card-body">
-                        <h2 th:text="${note.title}" class="card-title"></h2>
+                        <h3 th:text="${note.title}" class="card-title"></h3>
                         <p>Tags: <span th:text="${note.tag}" class="card-text"></span></p>
                         <a th:href="'note' + '/' + ${note.id}" class="btn btn-primary">Read more &rarr;</a>
                     </div>
@@ -46,23 +45,24 @@
                         <p>Author: <span th:text="${note.getAuthorName()}" class="card-text"></span></p>
                     </div>
                 </div>
-<!--            </div>-->
 
             <!-- Pagination -->
             <ul class="pagination justify-content-center mb-4">
-                <li class="page-item">
-                    <a class="page-link" href="#">&larr; Older</a>
+                <li class="page-item"><a class="page-link" th:href="'/user-notes/' + ${url} + '?page=0'">First</a></li>
+                <li th:if="${notes.hasPrevious()}" class="page-item">
+                    <a class="page-link" th:href="'/user-notes/' + ${url} + '?page=' + ${notes.getNumber() - 1}">< Previous</a>
                 </li>
-                <li class="page-item disabled">
-                    <a class="page-link" href="#">Newer &rarr;</a>
+                <li th:if="${notes.hasNext()}" class="page-item">
+                    <a class="page-link" th:href="'/user-notes/' + ${url} + '?page=' + ${notes.getNumber() + 1}">Next ></a>
                 </li>
+                <li class="page-item"><a class="page-link" th:href="'/user-notes/' + ${url} + '?page=' + ${notes.getTotalPages() - 1}">Last</a></li>
             </ul>
         </div>
 
         <!-- Sidebar Widgets Column -->
         <div class="col-md-4">
 
-<!--            &lt;!&ndash; Search Widget &ndash;&gt;-->
+            <!-- Search Widget -->
 <!--            <div class="card my-4">-->
 <!--                <h5 class="card-header">Search by tag</h5>-->
 <!--                <form method="get" action="/home">-->
@@ -71,7 +71,7 @@
 <!--                            &lt;!&ndash; {filter!} need to avoid page crushing &ndash;&gt;-->
 <!--                            <input type="text" name="filter" class="form-control" placeholder="Search..."/>-->
 <!--                            <span class="input-group-append">-->
-<!--                                    <button class="btn btn-primary" type="button">Go!</button>-->
+<!--                                    <button class="btn btn-primary" type="submit">Go!</button>-->
 <!--                                </span>-->
 <!--                        </div>-->
 <!--                    </div>-->
