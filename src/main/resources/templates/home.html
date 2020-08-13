@@ -32,7 +32,7 @@
             <h1 class="my-4">Notes list</h1>
 
             <!-- Blog Post -->
-            <div class="d-flex flex-column-reverse">
+<!--            <div class="d-flex flex-column-reverse">-->
                 <div th:each="note : ${notes}" class="card mb-4">
                     <div th:if="${note.filename}">
                         <img class="card-img-top" th:src="@{'/img/' + ${note.filename}}" alt="Card image cap">
@@ -47,15 +47,13 @@
                         <p>Author: <span th:text="${note.getAuthorName()}" class="card-text"></span></p>
                     </div>
                 </div>
-            </div>
+<!--            </div>-->
 
             <!-- Pagination -->
             <ul class="pagination justify-content-center mb-4">
-                <li class="page-item">
-                    <a class="page-link" href="#">&larr; Older</a>
-                </li>
-                <li class="page-item disabled">
-                    <a class="page-link" href="#">Newer &rarr;</a>
+                <li class="page-item disabled"><a class="page-link" href="#">Pages</a></li>
+                <li th:each="i : ${#numbers.sequence(0, notes.getTotalPages() - 1)}" class="page-item">
+                    <a class="page-link" th:href="${url} + '?page=' + ${i.intValue()}" th:text="${i.intValue() + 1}"></a>
                 </li>
             </ul>
         </div>
@@ -72,7 +70,7 @@
                                 <!-- {filter!} need to avoid page crushing -->
                                 <input type="text" name="filter" class="form-control" placeholder="Search..."/>
                                 <span class="input-group-append">
-                                    <button class="btn btn-primary" type="button">Go!</button>
+                                    <button class="btn btn-primary" type="submit">Go!</button>
                                 </span>
                         </div>
                     </div>

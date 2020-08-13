@@ -5,6 +5,10 @@ import com.example.personalblog.entities.User;
 import com.example.personalblog.repositories.NoteRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,6 +17,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+
 
 import java.io.File;
 import java.io.IOException;
@@ -36,18 +41,48 @@ public class MainController {
     }
 
     @GetMapping("/home")
-    public String home(@RequestParam(required = false, defaultValue = "") String filter, @AuthenticationPrincipal User user, Model model) {
-        Iterable<Note> notes;
+    public String home(@RequestParam(required = false, defaultValue = "") String filter,
+                       @AuthenticationPrincipal User user, Model model,
+                       @PageableDefault(sort = {"id"}, direction = Sort.Direction.DESC) Pageable pageable) {
+        Page<Note> page;
 
         if(filter != null && !filter.isEmpty()) {
-            notes = noteRepo.findByTag(filter);
+            page = noteRepo.findByTag(filter, pageable);
         } else {
-            notes = noteRepo.findAll();
+            page = noteRepo.findAll(pageable);
         }
-        model.addAttribute("notes", notes);
-        model.addAttribute("filter", notes);
+
+        model.addAttribute("notes", page);
+        model.addAttribute("filter", page);
+        model.addAttribute("url", "/home");
         model.addAttribute("user", user);
         return "home";
+    }
+
+//    @GetMapping("/user-notes/{user}")
+//    public String userNotes(
+//            @AuthenticationPrincipal User currentUser,
+//            @PathVariable User user, Model model,
+//            @PageableDefault(sort = {"id"}, direction = Sort.Direction.DESC) Pageable pageable) {
+//
+//        Page<Note> page;
+//        page = noteRepo.findByAuthor(currentUser, pageable);
+//        model.addAttribute("notes", page);
+////        model.addAttribute("isCurrentUser", currentUser.equals(user));
+//
+//        return "user-notes";
+//    }
+
+    @GetMapping("/user-notes/{user}")
+    public String userNotes(
+            @AuthenticationPrincipal User currentUser,
+            @PathVariable User user, Model model
+    ) {
+        Set<Note> notes = user.getNotes();
+        model.addAttribute("notes", notes);
+        model.addAttribute("isCurrentUser", currentUser.equals(user));
+
+        return "user-notes";
     }
 
     @GetMapping("/note-add")
@@ -140,18 +175,5 @@ public class MainController {
         noteRepo.delete(note);
 
         return "redirect:/home";
-    }
-
-    @GetMapping("/user-notes/{user}")
-    public String userNotes(
-            @AuthenticationPrincipal User currentUser,
-            @PathVariable User user,
-            Model model
-    ) {
-        Set<Note> notes = user.getNotes();
-        model.addAttribute("notes", notes);
-        model.addAttribute("isCurrentUser", currentUser.equals(user));
-
-        return "user-notes";
     }
 }
