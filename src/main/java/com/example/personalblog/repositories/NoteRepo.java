@@ -2,11 +2,20 @@ package com.example.personalblog.repositories;
 
 
 import com.example.personalblog.entities.Note;
+import com.example.personalblog.entities.User;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.CrudRepository;
 
-import java.util.List;
+
 
 public interface NoteRepo extends CrudRepository<Note, Long> {
 
-    List<Note> findByTag(String tag); // findByTag стандартный метод описаный в документации Spring JPA
+    Page<Note> findByTag(String tag, Pageable pageable); // findByTag стандартный метод описаный в документации Spring JPA
+
+    Page<Note> findAll(Pageable pageable);
+
+    Page<Note> findByAuthor(User currentUser, Pageable pageable);
+
+//    Page<Note> findByAuthor(User user, Pageable pageable);
 }

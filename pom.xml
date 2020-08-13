@@ -15,6 +15,24 @@
 	<name>personalblog</name>
 	<description>Project based on Spring Boot</description>
 
+<!--	<profiles>-->
+<!--		<profile>-->
+<!--			<id>dev</id>-->
+<!--			<properties>-->
+<!--				<activatedProperties>dev</activatedProperties>-->
+<!--			</properties>-->
+<!--			<activation>-->
+<!--				<activeByDefault>true</activeByDefault>-->
+<!--			</activation>-->
+<!--		</profile>-->
+<!--		<profile>-->
+<!--			<id>prod</id>-->
+<!--			<properties>-->
+<!--				<activatedProperties>prod</activatedProperties>-->
+<!--			</properties>-->
+<!--		</profile>-->
+<!--	</profiles>-->
+
 	<properties>
 		<java.version>1.8</java.version>
 	</properties>
@@ -68,10 +86,10 @@
 			<scope>runtime</scope>
 		</dependency>
 		<!-- Flyway Migrations -->
-		<dependency>
-			<groupId>org.flywaydb</groupId>
-			<artifactId>flyway-core</artifactId>
-		</dependency>
+<!--		<dependency>-->
+<!--			<groupId>org.flywaydb</groupId>-->
+<!--			<artifactId>flyway-core</artifactId>-->
+<!--		</dependency>-->
 		<!-- Mail -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -89,6 +107,11 @@
 			<artifactId>hibernate-validator</artifactId>
 			<version>6.1.5.Final</version>
 		</dependency>
+		<!-- Remember me -->
+		<dependency>
+			<groupId>org.springframework.session</groupId>
+			<artifactId>spring-session-jdbc</artifactId>
+		</dependency>
 
 	</dependencies>
 
@@ -98,11 +121,11 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
-			<plugin>
-				<groupId>org.flywaydb</groupId>
-				<artifactId>flyway-maven-plugin</artifactId>
-				<version>5.1.4</version>
-			</plugin>
+<!--			<plugin>-->
+<!--				<groupId>org.flywaydb</groupId>-->
+<!--				<artifactId>flyway-maven-plugin</artifactId>-->
+<!--				<version>5.1.4</version>-->
+<!--			</plugin>-->
 		</plugins>
 	</build>
 

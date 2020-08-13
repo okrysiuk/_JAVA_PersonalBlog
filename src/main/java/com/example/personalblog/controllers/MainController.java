@@ -5,6 +5,10 @@ import com.example.personalblog.entities.User;
 import com.example.personalblog.repositories.NoteRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,10 +18,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Optional;
+import java.util.Set;
 import java.util.UUID;
 
 @Controller
@@ -35,19 +41,49 @@ public class MainController {
     }
 
     @GetMapping("/home")
-    public String home(@RequestParam(required = false, defaultValue = "") String filter, @AuthenticationPrincipal User user, Model model) {
-        Iterable<Note> notes;
+    public String home(@RequestParam(required = false, defaultValue = "") String filter,
+                       @AuthenticationPrincipal User user, Model model,
+                       @PageableDefault(sort = {"id"}, direction = Sort.Direction.DESC) Pageable pageable) {
+        Page<Note> page;
 
         if(filter != null && !filter.isEmpty()) {
-            notes = noteRepo.findByTag(filter);
+            page = noteRepo.findByTag(filter, pageable);
         } else {
-            notes = noteRepo.findAll();
+            page = noteRepo.findAll(pageable);
         }
-        model.addAttribute("notes", notes);
-        model.addAttribute("filter", notes);
+
+        model.addAttribute("notes", page);
+        model.addAttribute("filter", page);
+        model.addAttribute("url", "/home");
         model.addAttribute("user", user);
         return "home";
     }
+
+    @GetMapping("/user-notes/{user}")
+    public String userNotes(
+            @AuthenticationPrincipal User currentUser,
+            @PathVariable User user, Model model,
+            @PageableDefault(sort = {"id"}, direction = Sort.Direction.DESC) Pageable pageable) {
+
+        Page<Note> page;
+        page = noteRepo.findByAuthor(currentUser, pageable);
+        model.addAttribute("notes", page);
+//        model.addAttribute("isCurrentUser", currentUser.equals(user));
+
+        return "user-notes";
+    }
+
+//    @GetMapping("/user-notes/{user}")
+//    public String userNotes(
+//            @AuthenticationPrincipal User currentUser,
+//            @PathVariable User user, Model model
+//    ) {
+//        Set<Note> notes = user.getNotes();
+//        model.addAttribute("notes", notes);
+//        model.addAttribute("isCurrentUser", currentUser.equals(user));
+//
+//        return "user-notes";
+//    }
 
     @GetMapping("/note-add")
     public String noteAdd(Model model) {
@@ -57,11 +93,10 @@ public class MainController {
 
     @PostMapping("/addition")
     public String noteAddition(@AuthenticationPrincipal User user,
-//                            @RequestParam(required = false) String author,
                                @RequestParam("file") MultipartFile file,
-                           @RequestParam(required = false) String title,
-                           @RequestParam(required = false) String text,
-                           @RequestParam(required = false) String tag, Model model) throws IOException {
+                               @RequestParam(required = false) String title,
+                               @RequestParam(required = false) String text,
+                               @RequestParam(required = false) String tag, Model model) throws IOException {
         Note note = new Note(user, title, text, tag);
 
         if (file != null && !file.getOriginalFilename().isEmpty()) {
@@ -82,6 +117,15 @@ public class MainController {
 
     @GetMapping("/note/{id}")
     public String noteDetails(@PathVariable(value = "id")long noteId, @AuthenticationPrincipal User user, Model model) {
+        return getString(noteId, user, model);
+    }
+
+    @GetMapping("/user-notes/note/{id}")
+    public String userNoteDetails(@PathVariable(value = "id")long noteId, @AuthenticationPrincipal User user, Model model) {
+        return getString(noteId, user, model);
+    }
+
+    private String getString(@PathVariable("id") long noteId, @AuthenticationPrincipal User user, Model model) {
         if(!noteRepo.existsById(noteId)){
             return "redirect:/";
         }
@@ -108,14 +152,12 @@ public class MainController {
 
     @PostMapping("/note/{id}/edit")
     public String noteUpdating(@PathVariable(value = "id")long noteId,
-//                               @RequestParam(required = false) String author,
                                @RequestParam(required = false) String title,
                                @RequestParam(required = false) String text,
                                @RequestParam(required = false) String tag, Model model) {
         Note note = noteRepo.findById(noteId).orElseThrow(() ->
                 new IllegalArgumentException("Unsupported value: " + noteId) // just return it
         );
-//        note.setAuthor(author);
         note.setTitle(title);
         note.setText(text);
         note.setTag(tag);
