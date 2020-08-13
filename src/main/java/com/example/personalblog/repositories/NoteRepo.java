@@ -15,5 +15,7 @@ public interface NoteRepo extends CrudRepository<Note, Long> {
 
     Page<Note> findAll(Pageable pageable);
 
+    Page<Note> findByAuthor(User currentUser, Pageable pageable);
+
 //    Page<Note> findByAuthor(User user, Pageable pageable);
 }

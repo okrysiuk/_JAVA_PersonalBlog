@@ -59,31 +59,31 @@ public class MainController {
         return "home";
     }
 
-//    @GetMapping("/user-notes/{user}")
-//    public String userNotes(
-//            @AuthenticationPrincipal User currentUser,
-//            @PathVariable User user, Model model,
-//            @PageableDefault(sort = {"id"}, direction = Sort.Direction.DESC) Pageable pageable) {
-//
-//        Page<Note> page;
-//        page = noteRepo.findByAuthor(currentUser, pageable);
-//        model.addAttribute("notes", page);
-////        model.addAttribute("isCurrentUser", currentUser.equals(user));
-//
-//        return "user-notes";
-//    }
-
     @GetMapping("/user-notes/{user}")
     public String userNotes(
             @AuthenticationPrincipal User currentUser,
-            @PathVariable User user, Model model
-    ) {
-        Set<Note> notes = user.getNotes();
-        model.addAttribute("notes", notes);
-        model.addAttribute("isCurrentUser", currentUser.equals(user));
+            @PathVariable User user, Model model,
+            @PageableDefault(sort = {"id"}, direction = Sort.Direction.DESC) Pageable pageable) {
+
+        Page<Note> page;
+        page = noteRepo.findByAuthor(currentUser, pageable);
+        model.addAttribute("notes", page);
+//        model.addAttribute("isCurrentUser", currentUser.equals(user));
 
         return "user-notes";
     }
+
+//    @GetMapping("/user-notes/{user}")
+//    public String userNotes(
+//            @AuthenticationPrincipal User currentUser,
+//            @PathVariable User user, Model model
+//    ) {
+//        Set<Note> notes = user.getNotes();
+//        model.addAttribute("notes", notes);
+//        model.addAttribute("isCurrentUser", currentUser.equals(user));
+//
+//        return "user-notes";
+//    }
 
     @GetMapping("/note-add")
     public String noteAdd(Model model) {
