@@ -13,8 +13,8 @@ public class DatasourceConfig {
         return DataSourceBuilder.create()
                 .driverClassName("com.mysql.cj.jdbc.Driver")
                 .url("jdbc:mysql://127.0.0.1:3306/pbdb?useUnicode=true&characterEncoding=UTF-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC")
-                .username("root")
-                .password("root")
+                .username("tomcat")
+                .password("rootR0ot")
                 .build();
     }
 }
