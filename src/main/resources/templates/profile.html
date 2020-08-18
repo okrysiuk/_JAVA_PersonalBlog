@@ -19,17 +19,17 @@
     <div id="form" class="row justify-content-center align-items-center h-100">
         <div class="col col-sm-6 col-md-6 col-lg-4 col-xl-3">
             <!--                <img class="mb-4" src="/img/user-icon.png" alt="" width="72" height="72">-->
-            <h2 class="h3 mb-3 font-weight-normal text-dark" th:text="'Зміна параметрів профілю ' + ${username}"></h2>
+            <h2 class="h3 mb-3 font-weight-normal text-dark" th:text="'Profile editor ' + ${username}"></h2>
             <div>
                 <form method="post" th:action="@{/profile}">
                     <div class="form-group">
-                        <input class="form-control form-control-lg" placeholder="Пароль" type="password" name="password"/>
+                        <input class="form-control form-control-lg" placeholder="New password.." type="password" name="password"/>
                     </div>
                     <div class="form-group">
-                        <input class="form-control form-control-lg" placeholder="Електронна пошта.." type="email" name="email"/>
+                        <input class="form-control form-control-lg" placeholder="New email.." type="email" name="email"/>
                     </div>
                     <div class="form-group">
-                        <button class="btn btn-warning btn-lg btn-block" type="submit">Зберегти зміни</button>
+                        <button class="btn btn-warning btn-lg btn-block" type="submit">Save changes</button>
                     </div>
                     <input type="hidden" name="_csrf" value="${_csrf.token}" />
                 </form>
