@@ -11,11 +11,10 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface NoteRepo extends CrudRepository<Note, Long> {
 
-    Page<Note> findByTag(String tag, Pageable pageable); // findByTag стандартный метод описаный в документации Spring JPA
+    Page<Note> findByTag(String tag, Pageable pageable);
 
     Page<Note> findAll(Pageable pageable);
 
     Page<Note> findByAuthor(User currentUser, Pageable pageable);
 
-//    Page<Note> findByAuthor(User user, Pageable pageable);
 }

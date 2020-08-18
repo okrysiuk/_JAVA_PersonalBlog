@@ -34,9 +34,6 @@
             <form action="/user-list/user-manager" method="post">
                 <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
                 <input type="text" name="userName" th:value="${user.username}" class="form-control"><br>
-<!--                <div th:each="role : ${roles}">-->
-<!--                    <input type="checkbox" name="userRole" th:checked="${#sets.contains(userRoles, role)}"><label th:text="${role}"></label>-->
-<!--                </div>-->
                 <input type="checkbox" name="userRole" th:value="USER"><label> USER</label><br>
                 <input type="checkbox" name="userRole" th:value="ADMIN"><label> ADMIN</label><br>
                 <input type="hidden" name="userId" th:value="${user.id}" class="form-control">

@@ -51,7 +51,7 @@ public class UserService implements UserDetailsService {
     private void sendMessage(User user) {
         if (!StringUtils.isEmpty(user.getEmail())) {
             String message = String.format("Hello, %s \n" +
-                                                    "Welcome to Blog Application. Please follow this link to verify your email: http://localhost:8080/activate/%s",
+                                                    "Welcome to Blog Application. Please follow this link to verify your email: http://195.206.232.51:5001/activate/%s",
                     user.getUsername(),
                     user.getActivationCode()
                     );
