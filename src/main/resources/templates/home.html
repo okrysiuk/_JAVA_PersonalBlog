@@ -32,7 +32,6 @@
             <h2 class="my-4">Notes list</h2>
 
             <!-- Blog Post -->
-<!--            <div class="d-flex flex-column-reverse">-->
                 <div th:each="note : ${notes}" class="card mb-4">
                     <div th:if="${note.filename}">
                         <img class="card-img-top" th:src="@{'/img/' + ${note.filename}}" alt="Card image cap">
@@ -47,11 +46,9 @@
                         <p>Author: <span th:text="${note.getAuthorName()}" class="card-text"></span></p>
                     </div>
                 </div>
-<!--            </div>-->
 
             <!-- Pagination -->
             <ul class="pagination justify-content-center mb-4">
-                <!--                <li class="page-item disabled"><a class="page-link" href="#">Pages</a></li>-->
                 <li th:if="${notes.hasPrevious()}" class="page-item"><a class="page-link" th:href="${url} + '?page=0'">First</a></li>
                 <li th:if="${notes.hasPrevious()}" class="page-item">
                     <a class="page-link" th:href="${url} + '?page=' + ${notes.getNumber() - 1}">< Previous</a>
@@ -59,9 +56,6 @@
                 <li th:if="${notes.hasNext()}" class="page-item">
                     <a class="page-link" th:href="${url} + '?page=' + ${notes.getNumber() + 1}">Next ></a>
                 </li>
-                <!--                <li th:each="i : ${#numbers.sequence(0, notes.getTotalPages() - 1)}" class="page-item">-->
-                <!--                    <a class="page-link" th:href="'/user-notes/' + ${url} + '?page=' + ${i.intValue()}" th:text="${i.intValue() + 1}"></a>-->
-                <!--                </li>-->
                 <li th:if="${notes.hasNext()}" class="page-item"><a class="page-link" th:href="${url} + '?page=' + ${notes.getTotalPages() - 1}">Last</a></li>
             </ul>
         </div>
@@ -98,24 +92,8 @@
                                 <li>
                                     <a  th:href="@{/profile}">User profile</a>
                                 </li>
-<!--                                <li>-->
-<!--                                    <a href="#">Freebies</a>-->
-<!--                                </li>-->
                             </ul>
                         </div>
-<!--                        <div class="col-lg-6">-->
-<!--                            <ul class="list-unstyled mb-0">-->
-<!--                                <li>-->
-<!--                                    <a href="#">JavaScript</a>-->
-<!--                                </li>-->
-<!--                                <li>-->
-<!--                                    <a href="#">CSS</a>-->
-<!--                                </li>-->
-<!--                                <li>-->
-<!--                                    <a href="#">Tutorials</a>-->
-<!--                                </li>-->
-<!--                            </ul>-->
-<!--                        </div>-->
                     </div>
                 </div>
             </div>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3" lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Blog WebApp - Info</title>
+
+    <!-- Bootstrap core CSS -->
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link th:href="@{/css/error.css}" rel="stylesheet">
+
+</head>
+<body>
+<div class="page-wrap d-flex flex-row align-items-center">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-12 text-center">
+                <span class="display-4 d-block">Disclaimer. Important! Read carefully.</span>
+                <div class="mb-4 lead">
+                    <p>This web application was build only for educational purposes. Application "Blog Web Application", hereinafter referred to as "Application" is not responsible for the content of articles published on the site. Only the user who posted the article bears criminal and administrative responsibility for the content of the article. Registration in the "Application" means that the user is familiar with the above points and agrees to be held responsible for their actions that may cause harm. Only persons over 18 years of age can register.</p>
+                </div>
+                <a th:href="@{/registration}" class="btn btn-link">Back to registration</a>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

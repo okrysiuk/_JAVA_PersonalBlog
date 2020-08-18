@@ -34,11 +34,9 @@
     <div class="container">
         <div class="row">
             <div class="col-xl-9 mx-auto">
-<!--                <h2 class="mb-5">Свобода нічого не варта, якщо вона не включає в себе свободу самовираження</h2>-->
                 <h2 class="mb-5">Freedom is worthless if it doesn't include freedom of expression</h2>
             </div>
             <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
-<!--                <a class="btn btn-primary" th:href="@{/home}">Перейти на домашню сторінку &rarr;</a>-->
                 <a class="btn btn-primary" th:href="@{/home}">Home page &rarr;</a>
             </div>
         </div>
@@ -52,27 +50,21 @@
 
             <div id="showcase1" class="col-lg-6 order-lg-2 text-white showcase-img"></div>
             <div class="col-lg-6 order-lg-1 my-auto showcase-text">
-<!--                <h2>Повністю адаптивний дизайн</h2>-->
                 <h2>Fully adaptive design</h2>
-<!--                <p class="lead mb-0">Працюйте де завгодно і на чому завгодно. Використовуйте смартфон, планшет або ПК.</p>-->
                 <p class="lead mb-0">Work anywhere and from anything you want. Use a smartphone, tablet or PC</p>
             </div>
         </div>
         <div class="row no-gutters">
             <div id="showcase2" class="col-lg-6 text-white showcase-img"></div>
             <div class="col-lg-6 my-auto showcase-text">
-<!--                <h2>Можливість завантажувати світлини</h2>-->
                 <h2>Ability to upload photos</h2>
-<!--                <p class="lead mb-0">Поділіться своїми враженнями, робіть неперевершені фото та публікуйте їх у своєму блозі.</p>-->
                 <p class="lead mb-0">Share your impressions, take unsurpassed photos and publish them on your blog</p>
             </div>
         </div>
         <div class="row no-gutters">
             <div id="showcase3" class="col-lg-6 order-lg-2 text-white showcase-img"></div>
-            <div class="col-lg-6 order-lg-1 my-auto showcase-text">
-<!--                <h2>Користуйтесь легко та невимушено</h2>-->
+            <div class="col-lg-6 order-lg-1 my-auto showcase-text">>
                 <h2>Use easily and effortlessly</h2>
-<!--                <p class="lead mb-0">Виражайте думки у зручній для Вас формі, не стримуйте свій розум - живіть вільно!</p>-->
                 <p class="lead mb-0">Express your thoughts in a form convenient for you, do not restrain your mind - live freely!</p>
             </div>
         </div>
@@ -86,23 +78,19 @@
             <div class="col-lg-6 h-100 text-center text-lg-left my-auto">
                 <ul class="list-inline mb-2">
                     <li class="list-inline-item">
-                        <a href="#">About project</a>
-                    </li>
-<!--                    <li class="list-inline-item">&sdot;</li>-->
-<!--                    <li class="list-inline-item">-->
-<!--                        <a href="#">Contacts</a>-->
-<!--                    </li>-->
-                    <li class="list-inline-item">&sdot;</li>
-                    <li class="list-inline-item">
-                        <a href="#">Terms of use</a>
+                        <a th:href="@{/about}">About project</a>
                     </li>
                     <li class="list-inline-item">&sdot;</li>
                     <li class="list-inline-item">
-                        <a href="#">Privacy policy</a>
+                        <a th:href="@{/terms}">Terms of use</a>
                     </li>
                     <li class="list-inline-item">&sdot;</li>
                     <li class="list-inline-item">
-                        <a href="#">Disclaimer</a>
+                        <a th:href="@{/privacy}">Privacy policy</a>
+                    </li>
+                    <li class="list-inline-item">&sdot;</li>
+                    <li class="list-inline-item">
+                        <a th:href="@{/disclaimer}">Disclaimer</a>
                     </li>
                 </ul>
                 <p class="text-muted small mb-4 mb-lg-0">&#x263A; Web Application "Personal Blog" 2020. Use only for educational purposes.</p>
